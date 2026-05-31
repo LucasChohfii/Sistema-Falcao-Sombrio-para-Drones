@@ -1,14 +1,47 @@
-# Sistema Falcão Sombrio para Drones
+# Sistema Falcão Sombrio — Drones
 
-**Lucas Chohfi Nigro — 10437138**  
-**Sofia de Oliveira Cavalcanti — 10723361**  
+Projeto de Software - 04G
+
+**Grupo:** Lucas & Sofia  
+**Integrantes:**  
+- Lucas Chohfi Nigro — RA: 10437138  
+- Sofia de Oliveira Cavalcanti — RA: 10723361  
+
 Ciência da Computação — Universidade Presbiteriana Mackenzie
 
 ---
 
-## Descrição
+## Sobre o Projeto
 
-O Sistema Falcão Sombrio é uma plataforma web para operação remota de drones bélicos. O sistema permite que operadores autenticados despachem missões de reconhecimento e ataque, acompanhem os drones em tempo real em um mapa interativo e consultem o histórico de operações registrado em banco de dados.
+A Securus Dynamics contratou a consultoria Cyber Bullet System para reformular a arquitetura do sistema Falcão Sombrio, uma plataforma para operação remota e autônoma de drones bélicos da frota Aquila-X.
+
+---
+
+## Etapas
+
+### Etapa 1 — Proposta de Projeto
+Definição do tema, equipe e repositório.
+
+### Etapa 2 — Diagrama de Classes
+Estrutura estática do sistema com as principais entidades e relacionamentos.
+
+### Etapa 3 — Diagrama de Sequência
+Fluxo de interações entre os componentes durante uma missão.
+
+### Etapa 4 — Integração de Modelos (Classes + Banco de Dados)
+Diagrama ER representando as tabelas e relacionamentos do banco de dados.
+
+### Etapa 5 — Diagrama de Projeto (Abstrações e Interfaces)
+Introdução de interfaces (`IAutenticavel`, `IRastreavel`, `IComunicavel`, `IPersistivel`) e classe abstrata `MissaoBase`.
+
+### Etapa 6 — Integração Sequência + Colaboração
+Diagramas de sequência e colaboração do ciclo completo de uma missão.
+
+### Etapa 7 — Diagrama de Estados
+Estados do Drone e da Missão com transições.
+
+### Etapa 8 — Implementação
+Aplicação web completa com backend Spring Boot, banco PostgreSQL e frontend com mapa interativo.
 
 ---
 
@@ -30,9 +63,7 @@ O Sistema Falcão Sombrio é uma plataforma web para operação remota de drones
 - Maven 3.8+
 - PostgreSQL 16 rodando localmente
 
-### Configuração do banco de dados
-
-Crie o banco e o usuário no PostgreSQL conforme o arquivo `src/main/resources/application.properties`. As tabelas são criadas automaticamente pelo Spring Boot na primeira execução.
+Configure as credenciais do banco em `src/main/resources/application.properties`. As tabelas são criadas automaticamente na primeira execução.
 
 ---
 
@@ -55,53 +86,6 @@ Acesse: `http://localhost:8080`
 - Registro de telemetria por missão — partida, chegada ao alvo e retorno
 - Log de auditoria com encadeamento de hash SHA-256 para garantir imutabilidade
 - Controle de acesso por nível — ADMINISTRADOR visualiza log de auditoria, OPERADOR acessa apenas operações
-
----
-
-## Estrutura do projeto
-
-```
-src/main/java/
-├── controle/
-│   ├── CentralDeControle.java     # Orquestrador da frota
-│   ├── FalcaoApplication.java     # Entry point Spring Boot
-│   ├── FalcaoController.java      # Endpoints REST
-│   └── SistemaAutenticacao.java   # Autenticação + OTP
-├── modelo/
-│   ├── BancoDeDados.java          # Implementa IPersistivel
-│   ├── ComunicacaoSegura.java     # Implementa IComunicavel
-│   ├── Drone.java                 # Implementa IRastreavel
-│   ├── LogAuditoria.java          # Hash chain de auditoria
-│   ├── MissaoAtaque.java          # Estende MissaoBase
-│   ├── MissaoBase.java            # Classe abstrata de missão
-│   ├── MissaoReconhecimento.java  # Estende MissaoBase
-│   ├── Operador.java              # Implementa IAutenticavel
-│   ├── SistemaNavegacao.java      # Navegação autônoma
-│   └── Telemetria.java            # Dados de posição do drone
-├── banco/
-│   ├── LogAuditoriaDAO.java
-│   ├── MissaoDAO.java
-│   └── TelemetriaDAO.java
-├── interfaces/
-│   ├── IAutenticavel.java
-│   ├── IComunicavel.java
-│   ├── IPersistivel.java
-│   └── IRastreavel.java
-├── enums/
-│   ├── NivelAcesso.java
-│   ├── StatusDrone.java
-│   └── StatusMissao.java
-└── seguranca/
-    └── SegurancaUtil.java
-
-src/main/resources/
-├── schema.sql
-├── application.properties
-└── static/
-    ├── index.html
-    ├── style.css
-    └── app.js
-```
 
 ---
 
