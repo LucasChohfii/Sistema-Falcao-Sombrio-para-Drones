@@ -1,0 +1,376 @@
+:root {
+    --verde:        #2C5F34;
+    --verde-dim:    #1e4224;
+    --verde-escuro: #0d1a10;
+    --preto:        #0d0d0d;
+    --painel:       #0f120f;
+    --amarelo:      #ffc107;
+    --vermelho:     #e53935;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: var(--preto);
+    color: var(--verde);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ── LOGIN ─────────────────────────────────────── */
+#tela-login, #tela-mfa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 0;
+}
+
+.terminal-box {
+    border: 1px solid var(--verde);
+    box-shadow: none;
+    padding: 40px 44px;
+    width: 420px;
+    background: var(--painel);
+}
+
+.terminal-header {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: var(--verde);
+    margin-bottom: 6px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--verde-dim);
+}
+
+.terminal-sub {
+    text-align: center;
+    font-size: 0.62rem;
+    color: var(--verde-dim);
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+}
+
+.form-group { margin-bottom: 16px; }
+
+label {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--verde-dim);
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    background: #020602;
+    border: 1px solid var(--verde-dim);
+    color: var(--verde);
+    padding: 10px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: var(--verde);
+    box-shadow: none;
+}
+
+.btn-militar {
+    width: 100%;
+    padding: 11px;
+    background: var(--verde-escuro);
+    border: 1px solid var(--verde);
+    color: var(--verde);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-top: 6px;
+}
+
+.btn-militar:hover {
+    background: var(--verde);
+    color: var(--preto);
+}
+
+.btn-cancelar {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid #660000;
+    color: var(--vermelho);
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    cursor: pointer;
+    margin-top: 5px;
+    letter-spacing: 2px;
+    transition: background 0.15s;
+}
+
+.btn-cancelar:hover { background: #1a0000; }
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid #660000;
+    color: var(--vermelho);
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: background 0.15s;
+}
+
+.btn-logout:hover { background: #1a0000; }
+
+.alert-erro {
+    background: #120000;
+    border: 1px solid var(--vermelho);
+    color: var(--vermelho);
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    margin-bottom: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* ── OTP BOX ───────────────────────────────────── */
+.otp-box {
+    margin-top: 16px;
+    border: 1px solid var(--verde-dim);
+    padding: 14px;
+    background: #020902;
+    text-align: center;
+}
+
+.otp-codigo {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 10px;
+    color: var(--verde);
+    margin-bottom: 6px;
+}
+
+.otp-timer {
+    font-size: 0.65rem;
+    color: var(--amarelo);
+    letter-spacing: 2px;
+}
+
+.otp-hint {
+    font-size: 0.6rem;
+    color: var(--verde-dim);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+/* ── TOPBAR ────────────────────────────────────── */
+#topbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 16px;
+    height: 36px;
+    background: #030603;
+    border-bottom: 1px solid var(--verde-dim);
+    flex-shrink: 0;
+}
+
+#tb-sistema {
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: var(--verde);
+    font-size: 0.78rem;
+}
+
+#tb-operador, #tb-status {
+    font-size: 0.65rem;
+    color: var(--verde-dim);
+    letter-spacing: 1px;
+}
+
+/* ── LAYOUT ────────────────────────────────────── */
+#tela-missao {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#main-layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ── SIDE PANEL ────────────────────────────────── */
+#painel-lateral {
+    width: 220px;
+    flex-shrink: 0;
+    background: var(--painel);
+    border-right: 1px solid #001a00;
+    padding: 12px;
+    overflow-y: auto;
+}
+
+.painel-titulo {
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+    color: var(--verde-dim);
+    border-bottom: 1px solid #001a00;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    margin-top: 14px;
+}
+
+.painel-titulo:first-child { margin-top: 0; }
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.66rem;
+    margin-bottom: 5px;
+    color: #448844;
+}
+
+.verde { color: var(--verde) !important; }
+.amarelo { color: var(--amarelo) !important; }
+.vermelho { color: var(--vermelho) !important; }
+
+.instrucao-texto {
+    font-size: 0.62rem;
+    color: #334433;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.coord-info {
+    font-size: 0.6rem;
+    color: var(--amarelo);
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+.tipo-missao-wrap {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.btn-tipo {
+    flex: 1;
+    padding: 6px;
+    background: var(--verde-escuro);
+    border: 1px solid var(--verde-dim);
+    color: var(--verde-dim);
+    font-family: 'Courier New', monospace;
+    font-size: 0.58rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+}
+
+.btn-tipo.ativo {
+    border-color: var(--verde);
+    color: var(--verde);
+}
+
+.hist-item {
+    font-size: 0.6rem;
+    color: #448844;
+    border-left: 2px solid var(--verde-dim);
+    padding: 3px 6px;
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
+.log-item {
+    font-size: 0.6rem;
+    color: #448844;
+    border-left: 2px solid #004400;
+    padding: 3px 6px;
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
+/* ── ÁREA DIREITA ──────────────────────────────── */
+#area-direita {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+#area-superior {
+    height: 30px;
+    background: #030603;
+    border-bottom: 1px solid #001a00;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+#timer-display {
+    font-size: 0.72rem;
+    color: var(--amarelo);
+    letter-spacing: 3px;
+}
+
+#drone-indicadores {
+    display: flex;
+    gap: 16px;
+}
+
+.drone-ind {
+    font-size: 0.62rem;
+    color: var(--verde-dim);
+    letter-spacing: 1px;
+}
+
+#map {
+    flex: 1;
+    filter: saturate(0.25) brightness(0.75) hue-rotate(80deg);
+}
+
+/* ── LOG PANEL ─────────────────────────────────── */
+#log-panel {
+    height: 56px;
+    background: #030603;
+    border-top: 1px solid #001a00;
+    padding: 6px 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.log-titulo {
+    color: var(--verde-dim);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+}
+
+#log-output {
+    display: flex;
+    gap: 18px;
+    font-size: 0.62rem;
+    color: #448844;
+}
+
+#log-output span { white-space: nowrap; }
+
+.hidden { display: none !important; }

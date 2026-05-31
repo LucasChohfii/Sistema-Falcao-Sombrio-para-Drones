@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FALCÃO SOMBRIO — SECURUS DYNAMICS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══════════════ ETAPA 1: LOGIN ══════════════ -->
+<div id="tela-login">
+    <div class="terminal-box">
+        <div class="terminal-header">SISTEMA FALCÃO SOMBRIO</div>
+        <div id="login-erro" class="alert-erro hidden"></div>
+        <div class="form-group">
+            <label>IDENTIFICAÇÃO DO OPERADOR</label>
+            <input type="text" id="inp-nome" placeholder="Nome do operador" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>SENHA</label>
+            <input type="password" id="inp-senha" placeholder="••••••••">
+        </div>
+        <button class="btn-militar" onclick="efetuarLogin()">▶ ACESSAR SISTEMA</button>
+    </div>
+</div>
+
+<!-- ══════════════ ETAPA 2: MFA ══════════════ -->
+<div id="tela-mfa" class="hidden">
+    <div class="terminal-box">
+        <div class="terminal-header">AUTENTICAÇÃO MFA</div>
+        <div id="mfa-erro" class="alert-erro hidden"></div>
+        <div class="otp-box">
+            <div class="otp-hint">SEU CÓDIGO DE ACESSO</div>
+            <div class="otp-codigo" id="otp-display">------</div>
+            <div class="otp-timer">EXPIRA EM <span id="otp-segundos">60</span>s</div>
+        </div>
+        <div class="form-group" style="margin-top: 20px;">
+            <label>INSIRA O CÓDIGO</label>
+            <input type="text" id="inp-otp" placeholder="000000" maxlength="6" autocomplete="off">
+        </div>
+        <button class="btn-militar" onclick="verificarMfa()">▶ VERIFICAR</button>
+        <button class="btn-cancelar" onclick="voltarLogin()">✕ CANCELAR</button>
+    </div>
+</div>
+
+<!-- ══════════════ TELA DE MISSÃO ══════════════ -->
+<div id="tela-missao" class="hidden">
+
+    <div id="topbar">
+        <span id="tb-sistema">FALCÃO SOMBRIO</span>
+        <span id="tb-operador">OPERADOR: —</span>
+        <span id="tb-status">AGUARDANDO ORDEM</span>
+        <button class="btn-logout" onclick="logout()">✕ SAIR</button>
+    </div>
+
+    <div id="main-layout">
+
+        <!-- PAINEL ESQUERDO -->
+        <div id="painel-lateral">
+
+            <div class="painel-titulo">FROTA</div>
+            <div class="info-row"><span>DRONE 1 — AQUILA-X1</span><span id="status-d1" class="verde">DISPONÍVEL</span></div>
+            <div class="info-row"><span>DRONE 2 — AQUILA-X2</span><span id="status-d2" class="verde">DISPONÍVEL</span></div>
+
+            <div class="painel-titulo">SELECIONAR DRONE</div>
+            <div class="tipo-missao-wrap">
+                <button class="btn-tipo ativo" id="btn-d1" onclick="selecionarDrone('DRONE-1')">AQUILA-X1</button>
+                <button class="btn-tipo" id="btn-d2" onclick="selecionarDrone('DRONE-2')">AQUILA-X2</button>
+            </div>
+
+            <div class="painel-titulo">MISSÃO</div>
+            <div class="instrucao-texto">Selecione o tipo e clique no mapa para definir o destino.</div>
+            <div class="tipo-missao-wrap">
+                <button class="btn-tipo ativo" id="btn-recon" onclick="selecionarTipo('RECONHECIMENTO')">RECON</button>
+                <button class="btn-tipo" id="btn-ataque" onclick="selecionarTipo('ATAQUE')">ATAQUE</button>
+            </div>
+
+            <div id="btn-confirmar-wrap" class="hidden">
+                <div class="coord-info" id="coord-alvo"></div>
+                <button class="btn-militar" onclick="confirmarMissao()">▶ INICIAR MISSÃO</button>
+                <button class="btn-cancelar" onclick="cancelarAlvo()">✕ CANCELAR</button>
+            </div>
+
+            <div class="painel-titulo">HISTÓRICO DE MISSÕES</div>
+            <div id="historico-lista"></div>
+
+            <div id="log-auditoria-wrap" class="hidden">
+                <div class="painel-titulo">LOG DE AUDITORIA</div>
+                <div id="log-auditoria-lista"></div>
+            </div>
+
+        </div>
+
+        <!-- ÁREA DIREITA -->
+        <div id="area-direita">
+            <div id="area-superior">
+                <div id="drone-indicadores">
+                    <span class="drone-ind">AQUILA-X1: <span id="ind-d1" class="verde">DISPONÍVEL</span></span>
+                    <span class="drone-ind">AQUILA-X2: <span id="ind-d2" class="verde">DISPONÍVEL</span></span>
+                </div>
+                <div id="timer-display" class="hidden">MISSÃO ► <span id="tempo">00:00</span></div>
+            </div>
+            <div id="map"></div>
+        </div>
+
+    </div>
+
+    <div id="log-panel">
+        <span class="log-titulo">LOG ►</span>
+        <div id="log-output"></div>
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
