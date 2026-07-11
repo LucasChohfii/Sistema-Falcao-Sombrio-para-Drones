@@ -96,3 +96,106 @@ Acesse: `http://localhost:8080`
 | `missao` | Registro de cada missão executada |
 | `telemetria` | Posições registradas durante o voo |
 | `log_auditoria` | Eventos do sistema com cadeia de hash imutável |
+
+---
+
+---
+
+# Shadow Falcon System — Drones
+
+Software Engineering Project - 04G
+
+**Team:** Lucas & Sofia  
+**Members:**  
+- Lucas Chohfi Nigro — Student ID: 10437138  
+- Sofia de Oliveira Cavalcanti — Student ID: 10723361  
+
+Computer Science — Universidade Presbiteriana Mackenzie
+
+---
+
+## About the Project
+
+Securus Dynamics contracted the Cyber Bullet System consulting firm to redesign the architecture of the Falcão Sombrio system, a platform for remote and autonomous operation of military drones from the Aquila-X fleet.
+
+---
+
+## Stages
+
+### Stage 1 — Project Proposal
+Definition of the topic, team, and repository.
+
+### Stage 2 — Class Diagram
+Static structure of the system with the main entities and relationships.
+
+### Stage 3 — Sequence Diagram
+Interaction flow between components during a mission.
+
+### Stage 4 — Model Integration (Classes + Database)
+ER diagram representing the database tables and relationships.
+
+### Stage 5 — Design Diagram (Abstractions and Interfaces)
+Introduction of interfaces (`IAutenticavel`, `IRastreavel`, `IComunicavel`, `IPersistivel`) and abstract class `MissaoBase`.
+
+### Stage 6 — Sequence + Collaboration Integration
+Sequence and collaboration diagrams of a mission's complete cycle.
+
+### Stage 7 — State Diagram
+Drone and Mission states with transitions.
+
+### Stage 8 — Implementation
+Full web application with Spring Boot backend, PostgreSQL database, and interactive map frontend.
+
+---
+
+## Technologies Used
+
+| Layer | Technology |
+|---|---|
+| Backend | Java 17 + Spring Boot 3.2.5 |
+| Database | PostgreSQL 16 + JdbcTemplate |
+| Frontend | HTML5 + CSS3 + JavaScript |
+| Map | Leaflet.js 1.9.4 + OpenStreetMap |
+| Build | Apache Maven |
+
+---
+
+## Prerequisites
+
+- Java 17 or higher
+- Maven 3.8+
+- PostgreSQL 16 running locally
+
+Configure database credentials in `src/main/resources/application.properties`. Tables are created automatically on first run.
+
+---
+
+## How to Run
+
+```bash
+mvn spring-boot:run
+```
+
+Access: `http://localhost:8080`
+
+---
+
+## Features
+
+- Two-step authentication — password + OTP with 60-second expiration and automatic renewal
+- Two independent drones (AQUILA-X1 and AQUILA-X2) operating simultaneously
+- Interactive map centered on the operational base (Mackenzie)
+- Reconnaissance and Attack missions with real-time trajectory animation
+- Per-mission telemetry logging — departure, target arrival, and return
+- Audit log with SHA-256 hash chaining to ensure immutability
+- Role-based access control — ADMINISTRATOR views the audit log, OPERATOR accesses operations only
+
+---
+
+## Database
+
+| Table | Description |
+|---|---|
+| `missao` | Record of each executed mission |
+| `telemetria` | Positions logged during flight |
+| `log_auditoria` | System events with immutable hash chain |
