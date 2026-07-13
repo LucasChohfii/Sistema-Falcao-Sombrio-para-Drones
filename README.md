@@ -63,7 +63,7 @@ Aplicação web completa com backend Spring Boot, banco PostgreSQL e frontend co
 - Maven 3.8+
 - PostgreSQL 16 rodando localmente
 
-Configure as credenciais do banco em `src/main/resources/application.properties`. As tabelas são criadas automaticamente na primeira execução.
+Copie o arquivo `application.properties.example` para `application.properties` e configure suas credenciais. As tabelas são criadas automaticamente na primeira execução.
 
 ---
 
@@ -166,7 +166,7 @@ Full web application with Spring Boot backend, PostgreSQL database, and interact
 - Maven 3.8+
 - PostgreSQL 16 running locally
 
-Configure database credentials in `src/main/resources/application.properties`. Tables are created automatically on first run.
+Copy `application.properties.example` to `application.properties` and set your credentials. Tables are created automatically on first run.
 
 ---
 

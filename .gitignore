@@ -10,3 +10,4 @@ mvnw.cmd
 *.iml
 .vscode/
 __pycache__/
+application.properties

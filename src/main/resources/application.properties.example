@@ -1,0 +1,7 @@
+spring.datasource.url=jdbc:postgresql://localhost:5432/falcao_sombrio
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.sql.init.mode=always
+spring.sql.init.schema-locations=classpath:schema.sql
+server.port=8080
